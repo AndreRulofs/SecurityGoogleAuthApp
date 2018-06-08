@@ -9,9 +9,9 @@ module.exports.getIndex = async function getIndex(req, res) {
 }
 
 module.exports.getCallback = async function getCallback(req, res) {
-    const data = 'code='+ req.query.code +'&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&client_secret=************&scope=&grant_type=authorization_code';
+    const data = 'code='+ req.query.code +'&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&client_secret=***whoknows&scope=&grant_type=authorization_code';
     const options = {
-        host: '/www.googleapis.com',
+        host: 'www.googleapis.com',
         path: '/oauth2/v4/token',
         method: 'POST',
         headers: {
@@ -26,11 +26,11 @@ module.exports.getCallback = async function getCallback(req, res) {
         }
         const {access_token} = response.body;
         const optionsGet = {
-            host: '/www.googleapis.com',
+            host: 'www.googleapis.com',
             path: '/calendar/v3/users/me/calendarList',
             method: 'GET',
             headers: {
-                Authorization: 'Bearer ' + access_token;
+                Authorization: 'Bearer ' + access_token
             }
         };
         const get_request = http.request(optionsGet, function(error, response) {
